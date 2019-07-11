@@ -17,6 +17,13 @@ public class Car implements Serializable {
 	@GeneratedValue
 	private Long id;
 	
+	private EngineType engineType;
+	
+	private Transmission transmission;
+	
+	private int year;
+	
+	private Classification classification;
 	
 	
 	
