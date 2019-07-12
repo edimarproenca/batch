@@ -1,6 +1,8 @@
 package com.learn.batch;
 
-import org.junit.Assert;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +33,18 @@ public class RepositorieTest {
 	@Test
 	public void runTest() {
 		log.info("Initializing Test");
-		FuelType fuelType = new FuelType("Gasolina");
-		log.info(fuelType.toString());
-		FuelType saved = fuelTypeRepository.save(fuelType);
-		log.info(saved.toString());
-		Assert.assertTrue(fuelType.equals(saved) && saved.getId() != null );
+		List<FuelType> fuelTypeList = new ArrayList<FuelType>();
+		fuelTypeList.add(new FuelType("Gasolina"));
+		fuelTypeList.add(new FuelType("Etanol"));
+		fuelTypeList.add(new FuelType("Diesel"));
+		this.printList(fuelTypeList);
+		fuelTypeRepository.saveAll(fuelTypeList);
+		List<FuelType> savedList = fuelTypeRepository.findAll();
+		this.printList(savedList);
+	}
+	
+	private void printList(List<FuelType> fuelList) {
+		fuelList.stream().forEach(fuel -> log.info(fuel.toString()));		
 	}
 	
 }
