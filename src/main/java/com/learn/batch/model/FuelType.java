@@ -22,9 +22,8 @@ public class FuelType implements Serializable {
 		super();
 	}
 
-	public FuelType(Long id, String fuelName) {
+	public FuelType(String fuelName) {
 		super();
-		this.id = id;
 		this.fuelName = fuelName;
 	}
 
@@ -42,6 +41,36 @@ public class FuelType implements Serializable {
 
 	public void setFuelName(String fuelName) {
 		this.fuelName = fuelName;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((fuelName == null) ? 0 : fuelName.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FuelType other = (FuelType) obj;
+		if (fuelName == null) {
+			if (other.fuelName != null)
+				return false;
+		} else if (!fuelName.equals(other.fuelName))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "FuelType [id=" + id + ", fuelName=" + fuelName + "]";
 	}
 
 }

@@ -84,4 +84,55 @@ public class EngineType implements Serializable {
 		this.hibrid = hibrid;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((fuelType == null) ? 0 : fuelType.hashCode());
+		result = prime * result + ((hibrid == null) ? 0 : hibrid.hashCode());
+		result = prime * result + horsePower;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((model == null) ? 0 : model.hashCode());
+		result = prime * result + torque;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		EngineType other = (EngineType) obj;
+		if (fuelType == null) {
+			if (other.fuelType != null)
+				return false;
+		} else if (!fuelType.equals(other.fuelType))
+			return false;
+		if (hibrid == null) {
+			if (other.hibrid != null)
+				return false;
+		} else if (!hibrid.equals(other.hibrid))
+			return false;
+		if (horsePower != other.horsePower)
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (model == null) {
+			if (other.model != null)
+				return false;
+		} else if (!model.equals(other.model))
+			return false;
+		if (torque != other.torque)
+			return false;
+		return true;
+	}
+	
+	
+
 }
