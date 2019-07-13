@@ -7,6 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.core.style.ToStringCreator;
+
+import net.bytebuddy.asm.Advice.This;
+
 @Entity
 @Table(name = "car")
 public class Car implements Serializable {
@@ -17,17 +21,18 @@ public class Car implements Serializable {
 	@GeneratedValue
 	private Long id;
 	
-	private EngineType engineType;
+	private String model;
 	
-	private int year;
+	private String engineType;
 	
-	public Car() {
-		super();
-	}
+	private String year;
 
-	public Car(Long id, EngineType engineType, int year) {
+	public Car() {
+	}
+	
+	public Car(String model, String engineType, String year) {
 		super();
-		this.id = id;
+		this.model = model;
 		this.engineType = engineType;
 		this.year = year;
 	}
@@ -40,19 +45,27 @@ public class Car implements Serializable {
 		this.id = id;
 	}
 
-	public EngineType getEngineType() {
+	public String getModel() {
+		return model;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+	public String getEngineType() {
 		return engineType;
 	}
 
-	public void setEngineType(EngineType engineType) {
+	public void setEngineType(String engineType) {
 		this.engineType = engineType;
 	}
 
-	public int getYear() {
+	public String getYear() {
 		return year;
 	}
 
-	public void setYear(int year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 
@@ -62,7 +75,8 @@ public class Car implements Serializable {
 		int result = 1;
 		result = prime * result + ((engineType == null) ? 0 : engineType.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + year;
+		result = prime * result + ((model == null) ? 0 : model.hashCode());
+		result = prime * result + ((year == null) ? 0 : year.hashCode());
 		return result;
 	}
 
@@ -85,9 +99,25 @@ public class Car implements Serializable {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (year != other.year)
+		if (model == null) {
+			if (other.model != null)
+				return false;
+		} else if (!model.equals(other.model))
+			return false;
+		if (year == null) {
+			if (other.year != null)
+				return false;
+		} else if (!year.equals(other.year))
 			return false;
 		return true;
 	}
 	
+	@Override
+	public String toString() {
+		return new ToStringCreator(this)
+					.append("id", this.id)
+					.append("model", this.model)
+					.append("year", this.year)
+					.toString();
+	}
 }
