@@ -64,7 +64,7 @@ public class CsvFileToDataBase {
 	@Bean
 	public Step csvFileToDatabaseStep() {
 		return stepBuilderFactory.get("csvFileToDatabaseStep")
-				.<Car, Car>chunk(1)
+				.<Car, Car>chunk(2)
 				.reader(csvCarReader())
 				.processor(csvCarProcessor())
 				.writer(writer())
