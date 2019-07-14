@@ -41,6 +41,7 @@ public class CsvFileToDataBase {
 	public FlatFileItemReader<Car> csvCarReader(){
 		FlatFileItemReader<Car> reader = new FlatFileItemReader<Car>();
 		reader.setResource(new ClassPathResource("cars.csv"));
+		reader.setLinesToSkip(1);
 		DefaultLineMapper<Car> carLineMapper = new DefaultLineMapper<Car>();
 		carLineMapper.setLineTokenizer(new DelimitedLineTokenizer());
 		carLineMapper.setFieldSetMapper(new CarFieldSetMapper());
@@ -64,7 +65,7 @@ public class CsvFileToDataBase {
 	@Bean
 	public Step csvFileToDatabaseStep() {
 		return stepBuilderFactory.get("csvFileToDatabaseStep")
-				.<Car, Car>chunk(2)
+				.<Car, Car>chunk(1)
 				.reader(csvCarReader())
 				.processor(csvCarProcessor())
 				.writer(writer())
