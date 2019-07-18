@@ -16,7 +16,7 @@ public class FuelType implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
-	private String fuelName;
+	private String name;
 
 	public FuelType() {
 		super();
@@ -24,7 +24,7 @@ public class FuelType implements Serializable {
 
 	public FuelType(String fuelName) {
 		super();
-		this.fuelName = fuelName;
+		this.name = fuelName;
 	}
 
 	public Long getId() {
@@ -35,19 +35,19 @@ public class FuelType implements Serializable {
 		this.id = id;
 	}
 
-	public String getFuelName() {
-		return fuelName;
+	public String getName() {
+		return name;
 	}
 
-	public void setFuelName(String fuelName) {
-		this.fuelName = fuelName;
+	public void setName(String fuelName) {
+		this.name = fuelName;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((fuelName == null) ? 0 : fuelName.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
@@ -60,17 +60,17 @@ public class FuelType implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		FuelType other = (FuelType) obj;
-		if (fuelName == null) {
-			if (other.fuelName != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!fuelName.equals(other.fuelName))
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "FuelType [id=" + id + ", fuelName=" + fuelName + "]";
+		return "FuelType [id=" + id + ", fuelName=" + name + "]";
 	}
 
 }

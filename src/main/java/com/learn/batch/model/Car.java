@@ -23,7 +23,7 @@ public class Car implements Serializable {
 	
 	private String model;
 	
-	private String engineType;
+	private EngineType engineType;
 	
 	private FuelType fuelType;
 	
@@ -32,7 +32,7 @@ public class Car implements Serializable {
 	public Car() {
 	}
 	
-	public Car(String model, String engineType, String year, FuelType fuelType) {
+	public Car(String model, EngineType engineType, String year, FuelType fuelType) {
 		super();
 		this.model = model;
 		this.engineType = engineType;
@@ -64,11 +64,11 @@ public class Car implements Serializable {
 		this.model = model;
 	}
 
-	public String getEngineType() {
+	public EngineType getEngineType() {
 		return engineType;
 	}
 
-	public void setEngineType(String engineType) {
+	public void setEngineType(EngineType engineType) {
 		this.engineType = engineType;
 	}
 
