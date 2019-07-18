@@ -25,16 +25,27 @@ public class Car implements Serializable {
 	
 	private String engineType;
 	
+	private FuelType fuelType;
+	
 	private String year;
 
 	public Car() {
 	}
 	
-	public Car(String model, String engineType, String year) {
+	public Car(String model, String engineType, String year, FuelType fuelType) {
 		super();
 		this.model = model;
 		this.engineType = engineType;
 		this.year = year;
+		this.fuelType = fuelType;
+	}
+
+	public FuelType getFuelType() {
+		return fuelType;
+	}
+
+	public void setFuelType(FuelType fuelType) {
+		this.fuelType = fuelType;
 	}
 
 	public Long getId() {

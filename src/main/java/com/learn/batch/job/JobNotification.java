@@ -18,6 +18,8 @@ public class JobNotification extends JobExecutionListenerSupport {
 	}
 	
 	
+	
+	
 	@Override
 	public void afterJob(JobExecution jobExecution) {
 		if(jobExecution.getStatus().equals(BatchStatus.COMPLETED)) {

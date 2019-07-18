@@ -44,6 +44,7 @@ public class CsvFileToDataBase {
 		DefaultLineMapper<Car> carLineMapper = new DefaultLineMapper<Car>();
 		carLineMapper.setLineTokenizer(new DelimitedLineTokenizer());
 		carLineMapper.setFieldSetMapper(new CarFieldSetMapper());
+		reader.setLinesToSkip(1);
 		reader.setLineMapper(carLineMapper);
 		reader.open(new ExecutionContext());
 		return reader;
@@ -64,7 +65,7 @@ public class CsvFileToDataBase {
 	@Bean
 	public Step csvFileToDatabaseStep() {
 		return stepBuilderFactory.get("csvFileToDatabaseStep")
-				.<Car, Car>chunk(2)
+				.<Car, Car>chunk(999)
 				.reader(csvCarReader())
 				.processor(csvCarProcessor())
 				.writer(writer())
