@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="'Hello, ' + ${name} + '!'"></title>
+<link href="/css/main.css" rel="stylesheet">
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}" />
+</head>
+<body>
+	<h2 class="hello-title" th:text="'CarList'"></h2>
+	<script src="/js/main.js"></script>
+	<div class="containers">
+		<div class="row">
+			<div class="col-2">
+				<form action="#" th:action="@{/pags/loadDataBase}" th:method="get" >
+  					<input type="hidden" name="_method" value="get" />
+  					<button type="submit" id="submitButton"> LoadDataBatch </button>
+				</form>
+			</div>
+			<div class="col-10">
+				<figure class="highlight">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th style="text-align: left" scope="col">Id</th>
+								<th style="text-align: left">Model</th>
+								<th style="text-align: left">Engine Type</th>
+								<th style="text-align: left">FuelType</th>
+								<th style="text-align: left">Year</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:if="${cars.empty}">
+								<td colspan="2">No Cars Available</td>
+							</tr>
+							<tr th:each="car : ${cars}">
+								<td><span th:text="${car.id}"> Id </span></td>
+								<td><span th:text="${car.model}"> Model </span></td>
+								<td><span th:text="${car.engineType.name}">
+										EngineType </span></td>
+								<td><span th:text="${car.fuelType.name}"> FuelType </span></td>
+								<td><span th:text="${car.year}"> Year </span></td>
+							</tr>
+						</tbody>
+					</table>
+				</figure>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
