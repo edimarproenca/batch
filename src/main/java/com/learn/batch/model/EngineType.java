@@ -4,7 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -13,8 +15,9 @@ public class EngineType implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "engine_type_sequece")
+    @SequenceGenerator(name = "engine_type_sequece", sequenceName = "ENGINE_TYPE_SEQ")
 	private Long id;
 	private String name;
 	

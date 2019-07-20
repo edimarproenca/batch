@@ -4,12 +4,10 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import org.springframework.core.style.ToStringCreator;
-
-import net.bytebuddy.asm.Advice.This;
 
 @Entity
 @Table(name = "car")
@@ -17,8 +15,9 @@ public class Car implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "car_sequence")
+    @SequenceGenerator(name = "car_sequence", sequenceName = "CAR_SEQ")
 	private Long id;
 	
 	private String model;
@@ -123,12 +122,4 @@ public class Car implements Serializable {
 		return true;
 	}
 	
-	@Override
-	public String toString() {
-		return new ToStringCreator(this)
-					.append("id", this.id)
-					.append("model", this.model)
-					.append("year", this.year)
-					.toString();
-	}
 }

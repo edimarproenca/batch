@@ -1,5 +1,6 @@
 package com.learn.batch.controllers;
 
+import java.awt.PageAttributes.MediaType;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,7 +45,8 @@ public class CarController {
 	@Autowired
 	private FuelTypeRepository fuelTypeRepository;
 
-	@RequestMapping(path = "findAll", produces = "application/json; charset=UTF-8")
+	@RequestMapping(path = "findAll",method = RequestMethod.GET ,produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
 	public List<Car> getAll() {
 		return carRepository.findAll();
 	}
