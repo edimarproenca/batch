@@ -1,5 +1,9 @@
 package com.learn.batch.controllers;
 
+import org.springframework.batch.core.JobParametersInvalidException;
+import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
+import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
+import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +20,6 @@ public class ThymeleafController {
 	
 	private static final String GREETING_PAGE = "greeting";
 
-
 	@Autowired
 	private CarRepository carRepository;
 	
@@ -25,8 +28,8 @@ public class ThymeleafController {
 	private LoadBatchService loadBatchService;
 	
     @GetMapping(GREETING_PAGE)
-    public String greeting(Model model) {
-        model.addAttribute("cars", carRepository.findAll());
+    public String greeting(Model model) throws JobParametersInvalidException, JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException {
+    	model.addAttribute("cars", carRepository.findAll());
         return GREETING_PAGE;
     }
     
